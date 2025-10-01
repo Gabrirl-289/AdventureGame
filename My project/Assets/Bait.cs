@@ -9,6 +9,8 @@ public class Bait : MonoBehaviour
     private float timer;
     public float Timebetween;
     public GameObject player;
+    public int ammo = 5;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,10 +20,18 @@ public class Bait : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(Throw))
+        if (ammo >= 1 && Input.GetKeyDown(Throw))
         {
            Instantiate(Projectile, player.transform.position, player.transform.rotation);
             Debug.Log("Bait Thrown");
+        }
+        
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Baitammo"))
+        {
+           ammo += 1;
         }
     }
 }
