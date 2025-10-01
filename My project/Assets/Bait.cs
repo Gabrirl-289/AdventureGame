@@ -24,14 +24,9 @@ public class Bait : MonoBehaviour
         {
            Instantiate(Projectile, player.transform.position, player.transform.rotation);
             Debug.Log("Bait Thrown");
+            ammo--;
         }
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Baitammo"))
-        {
-           ammo += 1;
-        }
-    }
+
 }

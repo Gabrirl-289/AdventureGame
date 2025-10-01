@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D _rb;
     public bool looking = true;
     private Camera Cam;
+    public Bait baitSctipt;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +73,10 @@ public class Movement : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Baitammo")
+        {
+            baitSctipt.ammo++;
+        }
         if (collision.gameObject.tag == "Enemy")
         {
             _rb.linearVelocity = Vector3.zero;
