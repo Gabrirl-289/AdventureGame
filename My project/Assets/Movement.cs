@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -16,9 +18,11 @@ public class Movement : MonoBehaviour
     private float distance;
     private Rigidbody2D _rb;
     public bool looking = true;
+    private Camera Cam;
     // Start is called before the first frame update
     void Start()
     {
+      Cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -60,7 +64,11 @@ public class Movement : MonoBehaviour
         //{
         // GetComponent<Rigidbody2D>() .Gravity Scale *= -1; 
         //}
-
+        Vector3 MousePos = (Vector2)Cam.ScreenToWorldPoint(Input.mousePosition);
+        float angledRad = Mathf.Atan2(MousePos.y - transform.position.y, MousePos.x - transform.position.x);
+        float angledDeg = (180 / Mathf.PI) * angledRad - 90; //offset this by 90 degrees
+        transform.rotation = Quaternion.Euler(0, 0, angledDeg);
+        Debug.DrawLine(transform.position, MousePos, Color.red);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
