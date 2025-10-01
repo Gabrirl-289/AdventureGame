@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -31,5 +32,21 @@ public class Menu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
         GameIsPaused = true;
+    }
+    
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        GameIsPaused = false;
+    }
+    public void Home()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
