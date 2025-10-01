@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7991310151546243481}
   - component: {fileID: 6817573787951211867}
   - component: {fileID: 5702800526245413740}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: bait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
