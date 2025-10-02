@@ -1387,7 +1387,6 @@ GameObject:
   - component: {fileID: 1741415562}
   - component: {fileID: 1741415561}
   - component: {fileID: 1741415560}
-  - component: {fileID: 1741415559}
   - component: {fileID: 1741415558}
   - component: {fileID: 1741415557}
   m_Layer: 8
@@ -1452,29 +1451,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1741415556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a990800c257719a469431aa201e7b508, type: 3}
+  m_Script: {fileID: 11500000, guid: de6a9920f456da142955aa10a44b8c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Throw: 102
-  Projectile: {fileID: 5112573372685755698, guid: 6cc419c0a64bc83408a669601b267635, type: 3}
-  ProjectileTransform: {fileID: 3466823467202796100, guid: 6cc419c0a64bc83408a669601b267635, type: 3}
-  canFire: 0
-  Timebetween: 0
-  player: {fileID: 1741415556}
-  ammo: 10
---- !u!114 &1741415559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741415556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4668a708e0356544b80c8d6d2a750100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  force: 20
 --- !u!50 &1741415560
 Rigidbody2D:
   serializedVersion: 5
@@ -1511,7 +1491,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1741415556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d08d7071aa357d4f8ea37399d25b68b, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c994089b9ae9743ad19a14db5147c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceBetween: 0
@@ -1525,7 +1505,7 @@ MonoBehaviour:
   speed: 10
   jumpHeight: 15
   looking: 1
-  baitSctipt: {fileID: 1741415558}
+  baitSctipt: {fileID: 0}
 --- !u!212 &1741415562
 SpriteRenderer:
   m_ObjectHideFlags: 0
