@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+//i will focus on something else for now
 public class LockPickingMinigame : MonoBehaviour
 {
     [SerializeField]float pickSpeed = 3f;
@@ -15,6 +15,11 @@ public class LockPickingMinigame : MonoBehaviour
         }
     }
     Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     float cyllinderposition;
     public float Cylinderposition
     {
@@ -39,7 +44,7 @@ public class LockPickingMinigame : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        throw new NotImplementedException();
+        animator.SetFloat("PickPosition", pickposition);
     }
 
     private void Pick()
