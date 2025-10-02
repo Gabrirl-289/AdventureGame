@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
-
+//i will focus on something else for now
 public class LockPickingMinigame : MonoBehaviour
 {
-    float pickSpeed = 0.5f;
+    [SerializeField]float pickSpeed = 3f;
     float pickposition;
     public float Pickposition
     {
@@ -13,6 +13,12 @@ public class LockPickingMinigame : MonoBehaviour
             pickposition = value;
         pickposition = Mathf.Clamp(pickposition, 0, 1f);
         }
+    }
+    Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
     }
     float cyllinderposition;
     public float Cylinderposition
@@ -33,6 +39,12 @@ public class LockPickingMinigame : MonoBehaviour
    private void Update()
     {
         Pick();
+        UpdateAnimator();
+    }
+
+    private void UpdateAnimator()
+    {
+        animator.SetFloat("PickPosition", pickposition);
     }
 
     private void Pick()

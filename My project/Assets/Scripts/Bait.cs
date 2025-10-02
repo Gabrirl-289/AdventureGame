@@ -10,6 +10,7 @@ public class Bait : MonoBehaviour
     public float Timebetween;
     public GameObject player;
     public int ammo = 5;
+    public int bulletDeathTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,9 +25,14 @@ public class Bait : MonoBehaviour
         {
            Instantiate(Projectile, player.transform.position, player.transform.rotation);
             Debug.Log("Bait Thrown");
+            StartCoroutine(bulletDeath());
             ammo--;
         }
         
     }
-
+    System.Collections.IEnumerator bulletDeath()
+    {
+        yield return new WaitForSeconds(bulletDeathTime);
+        Destroy(Projectile);
+    }
 }
