@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LockPickingMinigame : MonoBehaviour
 {
-    float pickSpeed = 0.5f;
+    [SerializeField]float pickSpeed = 3f;
     float pickposition;
     public float Pickposition
     {
@@ -14,6 +14,7 @@ public class LockPickingMinigame : MonoBehaviour
         pickposition = Mathf.Clamp(pickposition, 0, 1f);
         }
     }
+    Animator animator;
     float cyllinderposition;
     public float Cylinderposition
     {
@@ -33,6 +34,12 @@ public class LockPickingMinigame : MonoBehaviour
    private void Update()
     {
         Pick();
+        UpdateAnimator();
+    }
+
+    private void UpdateAnimator()
+    {
+        throw new NotImplementedException();
     }
 
     private void Pick()
