@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
 {
     public float distanceBetween;
     //public GameObject Enemy;
-    public KeyCode left = KeyCode.A, right = KeyCode.D, up = KeyCode.W, down = KeyCode.S, Jump = KeyCode.Space;
+    public KeyCode left = KeyCode.A, right = KeyCode.D, up = KeyCode.W, down = KeyCode.S, Jump = KeyCode.Space, sprint = KeyCode.LeftShift, slowdown = KeyCode.LeftControl;
     public float speed = 10, jumpHeight = 15;
     private float distance;
     private Rigidbody2D _rb;
@@ -26,7 +26,8 @@ public class Movement : MonoBehaviour
       Cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
     }
-
+    //lit allows light change
+    //default dont follow light
     // Update is called once per frame
     void Update()
     {
@@ -35,8 +36,24 @@ public class Movement : MonoBehaviour
         //Input.GetKeyUp(); is for RELEASING a key
 
         //distance = Vector2.Distance(transform.position, Enemy.transform.position);
+        if (Input.GetKey(sprint))
+        {
+            speed = 15;
+        }
+        if (Input.GetKeyUp(sprint))
+        {
+            speed = 10;
+        }
+        if (Input.GetKey(slowdown))
+        {
+            speed = 5;
+        }
+        if (Input.GetKeyUp(slowdown))
+        {
+            speed = 10;
+        }
 
-        if (Input.GetKey(left)) //chek for the player holding down the left button
+            if (Input.GetKey(left)) //chek for the player holding down the left button
         {
             _rb.linearVelocity = Vector2.left * speed; //get the component to the ri
         }
@@ -76,6 +93,7 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Baitammo")
         {
             baitSctipt.ammo++;
+            Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Enemy")
         {
