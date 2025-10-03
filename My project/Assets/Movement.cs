@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Overlays;
+//using UnityEditor;
+//using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -20,11 +22,19 @@ public class Movement : MonoBehaviour
     public bool looking = true;
     private Camera Cam;
     public Bait baitSctipt;
+    public TextMeshProUGUI gainammo;
+    public PlayableDirector baitPlusOne;
+
+    public Vector2 _movement;
+    public Vector2 direction;
+
     // Start is called before the first frame update
     void Start()
     {
       Cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
+        gainammo.text = "+1 Bait!";
+        
     }
     //lit allows light change
     //default dont follow light
@@ -52,41 +62,37 @@ public class Movement : MonoBehaviour
         {
             speed = 10;
         }
-
-            if (Input.GetKey(left)) //chek for the player holding down the left button
-        {
-            _rb.linearVelocity = Vector2.left * speed; //get the component to the ri
-        }
-
-        if (Input.GetKey(right)) // check to be holding down the right button
-        {
-            GetComponent<Rigidbody2D>().linearVelocity = Vector2.right * speed;
-        }
-
-        if (Input.GetKey(up)) //chek for the player holding down the up button
-        {
-            GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * speed;
-        }
-
-        if (Input.GetKey(down)) //chek for the player holding down the up down button
-        {
-            GetComponent<Rigidbody2D>().linearVelocity = Vector2.down * speed;
-        }
-
-        if (Input.GetKeyDown(Jump))
-        {
-            GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * jumpHeight;
-        }
-
-        // if (Input.GetKeyDown(KeyCode.Y))
+        
+        //if (Input.GetKey(left)) //chek for the player holding down the left button
         //{
-        // GetComponent<Rigidbody2D>() .Gravity Scale *= -1; 
+        //    _rb.linearVelocity = Vector2.left * speed; //get the component to the ri
         //}
-        Vector3 MousePos = (Vector2)Cam.ScreenToWorldPoint(Input.mousePosition);
-        float angledRad = Mathf.Atan2(MousePos.y - transform.position.y, MousePos.x - transform.position.x);
-        float angledDeg = (180 / Mathf.PI) * angledRad - 90; //offset this by 90 degrees
-        transform.rotation = Quaternion.Euler(0, 0, angledDeg);
-        Debug.DrawLine(transform.position, MousePos, Color.red);
+
+        //if (Input.GetKey(right)) // check to be holding down the right button
+        //{
+        //    GetComponent<Rigidbody2D>().linearVelocity = Vector2.right * speed;
+        //}
+
+        //if (Input.GetKey(up)) //chek for the player holding down the up button
+        //{
+        //    GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * speed;
+        //}
+
+        //if (Input.GetKey(down)) //chek for the player holding down the up down button
+        //{
+        //    GetComponent<Rigidbody2D>().linearVelocity = Vector2.down * speed;
+        //}
+
+        //if (Input.GetKeyDown(Jump))
+        //{
+        //    GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * jumpHeight;
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //{
+        //    GetComponent<Rigidbody2D>().Gravity Scale *= -1;
+        //}
+      
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -94,6 +100,9 @@ public class Movement : MonoBehaviour
         {
             baitSctipt.ammo++;
             Destroy(collision.gameObject);
+            baitPlusOne.Play();
+
+
         }
         if (collision.gameObject.tag == "Enemy")
         {
@@ -102,5 +111,25 @@ public class Movement : MonoBehaviour
             //SceneManager.LoadScene("gameover");
         }
 
+    }
+
+    public void Move(InputAction.CallbackContext ctx)
+    {
+        _movement = ctx.ReadValue<Vector2>();
+
+        if (ctx.ReadValue<Vector2>() != Vector2.zero)
+        {
+            direction = ctx.ReadValue<Vector2>();
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        _rb.linearVelocity = new Vector2(_movement.x * speed, _movement.y * speed);
+        Vector3 MousePos = (Vector2)Cam.ScreenToWorldPoint(Input.mousePosition);
+        float angledRad = Mathf.Atan2(MousePos.y - transform.position.y, MousePos.x - transform.position.x);
+        float angledDeg = (180 / Mathf.PI) * angledRad - 90; //offset this by 90 degrees
+        transform.rotation = Quaternion.Euler(0, 0, angledDeg);
+        Debug.DrawLine(transform.position, MousePos, Color.red);
     }
 }
