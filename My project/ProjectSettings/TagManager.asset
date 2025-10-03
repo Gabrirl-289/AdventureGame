@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Baitammo
+  - Crystal
+  - obstacle
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - Obstacle
   - Door
   - Bait
-  - 
-  - 
+  - Reflective
+  - Weight
   - 
   - 
   - 

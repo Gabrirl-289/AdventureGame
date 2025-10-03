@@ -2,30 +2,46 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    public bool pressured = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public bool isPressed = false;
+    public Sprite unpressedSprite;
+    public Sprite pressedSprite;
+
+    public GameObject objectToActivate; // Like a door or bridge
+
+    private SpriteRenderer sr;
+
     void Start()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
+        if (sr && unpressedSprite)
+            sr.sprite = unpressedSprite;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        print(pressured);
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Weight"))
         {
+            isPressed = true;
+            if (sr && pressedSprite)
+                sr.sprite = pressedSprite;
 
-            pressured = true;
-            Debug.Log("Player stepped on the pressure plate.");
-            // Add logic to activate whatever the pressure plate is connected to
+            Debug.Log("Pressure plate pressed!");
+            if (objectToActivate)
+                objectToActivate.SetActive(false);
         }
-        else
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Weight"))
         {
-            pressured = false;
+            isPressed = false;
+            if (sr && unpressedSprite)
+                sr.sprite = unpressedSprite;
+
+            Debug.Log("Pressure plate released!");
+            if (objectToActivate)
+                objectToActivate.SetActive(true);
         }
     }
 }
