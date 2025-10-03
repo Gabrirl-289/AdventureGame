@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Grabbing : MonoBehaviour
 {
-    public float grabRange = 10f;
+    public float grabRange = 3f;
     public KeyCode grabKey = KeyCode.E;
-    private GameObject grabbedObject;
+    public GameObject grabbedObject;
 
     void Update()
     {
