@@ -1767,6 +1767,7 @@ GameObject:
   - component: {fileID: 2081108928}
   - component: {fileID: 2081108929}
   - component: {fileID: 2081108930}
+  - component: {fileID: 2081108931}
   m_Layer: 8
   m_Name: Square
   m_TagString: Player
@@ -1813,18 +1814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d08d7071aa357d4f8ea37399d25b68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceBetween: 0
-  left: 97
-  right: 100
-  up: 119
-  down: 115
-  Jump: 32
-  sprint: 304
-  slowdown: 306
-  speed: 10
-  jumpHeight: 15
-  looking: 1
-  baitSctipt: {fileID: 2081108929}
 --- !u!212 &2081108926
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1927,6 +1916,7 @@ MonoBehaviour:
   Timebetween: 0
   player: {fileID: 2081108921}
   ammo: 5
+  bulletDeathTime: 0
 --- !u!61 &2081108930
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1973,6 +1963,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2081108931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081108921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c994089b9ae9743ad19a14db5147c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceBetween: 0
+  left: 97
+  right: 100
+  up: 119
+  down: 115
+  Jump: 32
+  sprint: 304
+  slowdown: 306
+  speed: 10
+  jumpHeight: 15
+  looking: 1
+  baitSctipt: {fileID: 2081108929}
 --- !u!1001 &8532680769384718548
 PrefabInstance:
   m_ObjectHideFlags: 0
