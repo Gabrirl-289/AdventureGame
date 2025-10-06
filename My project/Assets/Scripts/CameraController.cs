@@ -8,12 +8,30 @@ public class CameraController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.transform.position + offset, speed * Time.deltaTime);
     }
+
+    //[Range(0, 1)]
+    //public float smoothTime;
+
+    //public Transform playerTransform;
+    //public float amountToZoom = 10f;
+
+    //public void FixedUpdate()
+    //{
+    //    Vector3 pos = GetComponent<Transform>().position;
+
+    //    pos.x = Mathf.Lerp(pos.x, playerTransform.position.x, smoothTime);
+    //    pos.y = Mathf.Lerp(pos.y, playerTransform.position.y, smoothTime);
+
+    //    //pos.x = Mathf.Clamp(pos.x, 0 + (orthoSize * 1.775f), worldSize - (orthoSize * 1.775f));
+
+    //    GetComponent<Transform>().position = pos;
+    //}
 }

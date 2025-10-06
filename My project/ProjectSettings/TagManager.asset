@@ -8,6 +8,7 @@ TagManager:
   - Crystal
   - obstacle
   - Mirror
+  - weight
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Bait
   - Reflective
   - Weight
-  - 
+  - Interactable
   - 
   - 
   - 

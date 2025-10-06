@@ -6,6 +6,7 @@ public class BulletScript : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
     public float force = 20f;
+    public int bulletDeathTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,11 +18,18 @@ public class BulletScript : MonoBehaviour
         rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * force;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+        StartCoroutine(bulletDeath());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    System.Collections.IEnumerator bulletDeath()
+    {
+        yield return new WaitForSeconds(bulletDeathTime);
+        Destroy(gameObject);
+
     }
 }
