@@ -8,6 +8,7 @@ TagManager:
   - Crystal
   - obstacle
   - Mirror
+  - weight
   layers:
   - Default
   - TransparentFX
