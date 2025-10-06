@@ -1,43 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
-    public float moveSpeed = 2f;
-    Rigidbody2D rb;
-    public Transform target;
-    Vector2 moveDirection;
-
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        //target = GameObject.Find("Player").transform;
-    }
+    public AIPath aiPath;
 
     // Update is called once per frame
     void Update()
     {
-        if (target)
+        if(aiPath.desiredVelocity.x >= 0.01f)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
-            moveDirection = direction;
-
-            //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            //rb.rotation = angle;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (target)
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        } else if (aiPath.desiredVelocity.x <= -0.01f)
         {
-            rb.linearVelocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }
