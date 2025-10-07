@@ -2,34 +2,44 @@ using UnityEngine;
 
 public class Grabbing : MonoBehaviour
 {
-    public float grabRange = 3f;
-    public KeyCode grabKey = KeyCode.E;
-    public GameObject grabbedObject;
-
+    [SerializeField]
+    private Transform grabPoint;
+    
+    [SerializeField]
+    private Transform rayPoint;
+    
+    [SerializeField]    
+    private float raydistance = 2.5f;
+    private GameObject grabbedObject;
+    private int layerIndex;
+    private void Start()
+    {
+        layerIndex = LayerMask.NameToLayer("Weight");
+    }
     void Update()
     {
-        if (Input.GetKeyDown(grabKey))
+        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, raydistance);
+        if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
         {
-            if (grabbedObject == null)
+            if (Input.GetKeyDown(KeyCode.E) && grabbedObject == null)
             {
-                // Try to grab
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, grabRange);
-                if (hit.collider != null && hit.collider.CompareTag("weight"))
-                {
-                    grabbedObject = hit.collider.gameObject;
-                    grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic; // Disable physics while holding
-                    grabbedObject.transform.SetParent(transform);
-                    grabbedObject.transform.localPosition = new Vector3(1.5f, 0, 0); // Hold to the right of player
-                }
+                grabbedObject = hitInfo.collider.gameObject;
+                grabbedObject.transform.position = grabPoint.position;
+                grabbedObject.transform.SetParent(transform);
+                grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.E))
             {
-                // Place object
                 grabbedObject.transform.SetParent(null);
-                grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; // Re-enable physics
-                grabbedObject.transform.position = transform.position + transform.right * 2f; // Place 2 units to the right
+                grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 grabbedObject = null;
             }
         }
+        Debug.DrawRay(rayPoint.position, transform.forward * raydistance, Color.red);
+
+    }
+    private void OnDrawGizmos()
+    {
+       // Gizmos.DrawSphere(transform.position, 2.5f); // Draw a small sphere at the origin // Draw the grab range
     }
 }
