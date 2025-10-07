@@ -239,9 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc22200747b55344a883a5973ed9cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabRange: 5
-  grabKey: 101
-  grabbedObject: {fileID: 0}
+  grabPoint: {fileID: 0}
+  rayPoint: {fileID: 0}
+  raydistance: 2.5
 --- !u!114 &359148780
 MonoBehaviour:
   m_ObjectHideFlags: 0
