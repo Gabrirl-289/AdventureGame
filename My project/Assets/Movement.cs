@@ -127,13 +127,12 @@ public class Movement : MonoBehaviour
         if (ctx.ReadValue<Vector2>() != Vector2.zero)
         {
             direction = ctx.ReadValue<Vector2>();
-            animator.SetBool("walking", false);
         }
 
-    //    if (ctx.ReadValue<Vector2>() != Vector2.zero)
-     //   {
-    //        animator.SetBool("walking", false);
-    //    }
+       if (ctx.ReadValue<Vector2>() != Vector2.zero)
+         {
+             animator.SetBool("walking", false);
+         }
 
     }
 
@@ -179,6 +178,13 @@ public class Movement : MonoBehaviour
             print("Not Sprinting");
             isSprinting = false;
             speed = 10;
+        }
+
+        animator.SetBool("walking", true);
+
+        if (ctx.ReadValue<Vector2>() != Vector2.zero)
+        {
+            animator.SetBool("walking", false);
         }
     }
 
