@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 //using UnityEditor;
 //using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -30,12 +31,15 @@ public class Movement : MonoBehaviour
     public Vector2 _movement;
     public Vector2 direction;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
       Cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
         gainammo.text = "+1 Bait!";
+        animator = GetComponent<Animator>();
         
     }
     //lit allows light change
@@ -118,11 +122,19 @@ public class Movement : MonoBehaviour
     public void Move(InputAction.CallbackContext ctx)
     {
         _movement = ctx.ReadValue<Vector2>();
+        animator.SetBool("walking", true);
 
         if (ctx.ReadValue<Vector2>() != Vector2.zero)
         {
             direction = ctx.ReadValue<Vector2>();
+            animator.SetBool("walking", false);
         }
+
+    //    if (ctx.ReadValue<Vector2>() != Vector2.zero)
+     //   {
+    //        animator.SetBool("walking", false);
+    //    }
+
     }
 
     public void Crouch(InputAction.CallbackContext ctx)
@@ -180,3 +192,5 @@ public class Movement : MonoBehaviour
         Debug.DrawLine(transform.position, MousePos, Color.red);
     }
 }
+
+
