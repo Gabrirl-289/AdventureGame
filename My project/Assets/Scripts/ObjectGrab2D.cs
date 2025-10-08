@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ObjectGrab2D : MonoBehaviour
 {
@@ -11,17 +12,33 @@ public class ObjectGrab2D : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(grabKey))
-        {
-            if (heldObject == null)
-                TryGrabObject();
-            else
-                ReleaseObject();
-        }
+        //if (Input.GetKeyDown(grabKey))
+        //{
+        //    if (heldObject == null)
+        //        TryGrabObject();
+        //    else
+        //        ReleaseObject();
+        //}
 
         if (heldObject != null)
         {
             heldObject.transform.position = holdPoint.position;
+        }
+    }
+
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            print("somehting1");
+            if (heldObject == null)
+                TryGrabObject();
+        }
+        else if (ctx.canceled)
+        {
+            print("something2");
+            if (heldObject != null)
+                ReleaseObject();
         }
     }
 

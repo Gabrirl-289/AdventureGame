@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 //using UnityEditor;
 //using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -24,9 +25,13 @@ public class Movement : MonoBehaviour
     public Bait baitSctipt;
     public TextMeshProUGUI gainammo;
     public PlayableDirector baitPlusOne;
+    public bool isSprinting;
+    public bool isCrouching;
 
     public Vector2 _movement;
     public Vector2 direction;
+
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,7 @@ public class Movement : MonoBehaviour
       Cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
         gainammo.text = "+1 Bait!";
+        animator = GetComponent<Animator>();
         
     }
     //lit allows light change
@@ -46,22 +52,22 @@ public class Movement : MonoBehaviour
         //Input.GetKeyUp(); is for RELEASING a key
 
         //distance = Vector2.Distance(transform.position, Enemy.transform.position);
-        if (Input.GetKey(sprint))
-        {
-            speed = 15;
-        }
-        if (Input.GetKeyUp(sprint))
-        {
-            speed = 10;
-        }
-        if (Input.GetKey(slowdown))
-        {
-            speed = 5;
-        }
-        if (Input.GetKeyUp(slowdown))
-        {
-            speed = 10;
-        }
+        //if (Input.GetKey(sprint))
+        //{
+        //    speed = 15;
+        //}
+        //if (Input.GetKeyUp(sprint))
+        //{
+        //    speed = 10;
+        //}
+        //if (Input.GetKey(slowdown))
+        //{
+        //    speed = 5;
+        //}
+        //if (Input.GetKeyUp(slowdown))
+        //{
+        //    speed = 10;
+        //}
         
         //if (Input.GetKey(left)) //chek for the player holding down the left button
         //{
@@ -116,10 +122,63 @@ public class Movement : MonoBehaviour
     public void Move(InputAction.CallbackContext ctx)
     {
         _movement = ctx.ReadValue<Vector2>();
+        animator.SetBool("walking", true);
 
         if (ctx.ReadValue<Vector2>() != Vector2.zero)
         {
             direction = ctx.ReadValue<Vector2>();
+            animator.SetBool("walking", false);
+        }
+
+    //    if (ctx.ReadValue<Vector2>() != Vector2.zero)
+     //   {
+    //        animator.SetBool("walking", false);
+    //    }
+
+    }
+
+    public void Crouch(InputAction.CallbackContext ctx)
+    {
+        print(ctx.phase);
+
+        if(isSprinting)
+        {
+            return;
+        }
+
+        if (ctx.performed)
+        {
+            print("Crouch");
+            isCrouching = true;
+            speed = 5;
+        }
+        else
+        {
+            print("Not Crouched");
+            isCrouching = false;
+            speed = 10;
+        }
+    }
+
+    public void Sprint(InputAction.CallbackContext ctx)
+    {
+        print(ctx.phase);
+        if (isCrouching)
+        {
+            return;
+        }
+
+        if (ctx.performed)
+        {
+            print("Sprinting");
+            isSprinting = true;
+            speed = 15;
+        }
+        else
+        {
+            print("Not Sprinting");
+            isSprinting = false;
+            speed = 10;
         }
     }
 
@@ -133,3 +192,5 @@ public class Movement : MonoBehaviour
         Debug.DrawLine(transform.position, MousePos, Color.red);
     }
 }
+
+

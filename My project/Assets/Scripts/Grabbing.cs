@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Grabbing : MonoBehaviour
 {
@@ -38,6 +39,30 @@ public class Grabbing : MonoBehaviour
         Debug.DrawRay(rayPoint.position, transform.forward * raydistance, Color.red);
 
     }
+
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, raydistance);
+        if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
+        {
+            if (ctx.performed && grabbedObject == null)
+            {
+                grabbedObject = hitInfo.collider.gameObject;
+                grabbedObject.transform.position = grabPoint.position;
+                grabbedObject.transform.SetParent(transform);
+                grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            }
+            else if (ctx.performed)
+            {
+                grabbedObject.transform.SetParent(null);
+                grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                grabbedObject = null;
+            }
+        }
+        Debug.DrawRay(rayPoint.position, transform.forward * raydistance, Color.red);
+
+    }
+
     private void OnDrawGizmos()
     {
        // Gizmos.DrawSphere(transform.position, 2.5f); // Draw a small sphere at the origin // Draw the grab range
