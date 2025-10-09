@@ -31,7 +31,6 @@ public class Movement : MonoBehaviour
     public Vector2 _movement;
     public Vector2 direction;
 
-    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +38,7 @@ public class Movement : MonoBehaviour
       Cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
         gainammo.text = "+1 Bait!";
-        animator = GetComponent<Animator>();
-        
+
     }
     //lit allows light change
     //default dont follow light
@@ -122,17 +120,11 @@ public class Movement : MonoBehaviour
     public void Move(InputAction.CallbackContext ctx)
     {
         _movement = ctx.ReadValue<Vector2>();
-        animator.SetBool("walking", true);
 
         if (ctx.ReadValue<Vector2>() != Vector2.zero)
         {
             direction = ctx.ReadValue<Vector2>();
         }
-
-       if (ctx.ReadValue<Vector2>() != Vector2.zero)
-         {
-             animator.SetBool("walking", false);
-         }
 
     }
 
@@ -180,12 +172,9 @@ public class Movement : MonoBehaviour
             speed = 10;
         }
 
-        animator.SetBool("walking", true);
 
-        if (ctx.ReadValue<Vector2>() != Vector2.zero)
-        {
-            animator.SetBool("walking", false);
-        }
+
+
     }
 
     public void FixedUpdate()
