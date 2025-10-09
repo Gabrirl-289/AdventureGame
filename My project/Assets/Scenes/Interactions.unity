@@ -850,7 +850,7 @@ Transform:
   m_GameObject: {fileID: 481264436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: -2.93, z: 0}
+  m_LocalPosition: {x: 0.47, y: -2.62, z: 0}
   m_LocalScale: {x: 3.1982794, y: 3.1982794, z: 3.1982794}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -868,6 +868,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -993,6 +994,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a168a3c85b45b7e47ab7e3cf672b9ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 2144580567}
+  speed: 5
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,7 +1262,7 @@ Transform:
   m_GameObject: {fileID: 747317299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.01, y: -0.36, z: 0}
+  m_LocalPosition: {x: 5.08, y: -2.63, z: 0}
   m_LocalScale: {x: 4.0088, y: 4.0088, z: 4.0088}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1264,7 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2da07e8bea9884a8309e61f4d59cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 7765092857491689806, guid: 35f969601dabafc42bb40c382af823a7, type: 3}
+  itemButton: {fileID: 8369430743523194810, guid: 2a597a62b4f306547a065f0faeced969, type: 3}
 --- !u!58 &747317303
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2084,7 +2100,7 @@ Transform:
   m_GameObject: {fileID: 1047334010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.96, y: -2.92, z: 0}
+  m_LocalPosition: {x: -3.9, y: -2.64, z: 0}
   m_LocalScale: {x: 4.1426, y: 4.1426, z: 4.1426}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2102,7 +2118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2da07e8bea9884a8309e61f4d59cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 8369430743523194810, guid: 2a597a62b4f306547a065f0faeced969, type: 3}
+  itemButton: {fileID: 7765092857491689806, guid: 35f969601dabafc42bb40c382af823a7, type: 3}
 --- !u!58 &1047334014
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2954,7 +2970,7 @@ Transform:
   m_GameObject: {fileID: 1207057487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.99, y: 2.12, z: 0}
+  m_LocalPosition: {x: 12.57, y: -2.58, z: 0}
   m_LocalScale: {x: 4.9449, y: 4.9449, z: 4.9449}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3141,7 +3157,7 @@ Transform:
   m_GameObject: {fileID: 1312089689}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.39, y: -2.95, z: 0}
+  m_LocalPosition: {x: -8.15, y: -2.54, z: 0}
   m_LocalScale: {x: 3.081, y: 3.081, z: 3.081}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3594,7 +3610,7 @@ Transform:
   m_GameObject: {fileID: 2091520391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.63, y: -2.96, z: 0}
+  m_LocalPosition: {x: 9.1, y: -2.6, z: 0}
   m_LocalScale: {x: 2.89625, y: 2.89625, z: 2.89625}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3819,6 +3835,8 @@ MonoBehaviour:
   baitSctipt: {fileID: 2144580572}
   gainammo: {fileID: 0}
   baitPlusOne: {fileID: 0}
+  isSprinting: 0
+  isCrouching: 0
   _movement: {x: 0, y: 0}
   direction: {x: 0, y: 0}
 --- !u!61 &2144580571
@@ -4013,11 +4031,11 @@ MonoBehaviour:
   isFull: 000000000000
   slots:
   - {fileID: 992447710}
-  - {fileID: 1561034831}
-  - {fileID: 2140160626}
   - {fileID: 428986146}
-  - {fileID: 1877030253}
+  - {fileID: 1561034831}
   - {fileID: 1130118315}
+  - {fileID: 2140160626}
+  - {fileID: 1877030253}
 --- !u!1001 &8532680769384718548
 PrefabInstance:
   m_ObjectHideFlags: 0
