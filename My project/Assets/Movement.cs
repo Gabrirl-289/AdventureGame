@@ -14,6 +14,7 @@ using UnityEngine.UIElements;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private LineOfSight LineOfSight;
     public float distanceBetween;
     //public GameObject Enemy;
     public KeyCode left = KeyCode.A, right = KeyCode.D, up = KeyCode.W, down = KeyCode.S, Jump = KeyCode.Space, sprint = KeyCode.LeftShift, slowdown = KeyCode.LeftControl;
@@ -47,6 +48,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LineOfSight.SetAimDirection(direction);
+        LineOfSight.SetOrigin(transform.position);
         //Input.GetKey(); is for HOLDING a key
         //Input.GetKeyDown(); is for PRESSING a key
         //Input.GetKeyUp(); is for RELEASING a key
@@ -68,7 +71,7 @@ public class Movement : MonoBehaviour
         //{
         //    speed = 10;
         //}
-        
+
         //if (Input.GetKey(left)) //chek for the player holding down the left button
         //{
         //    _rb.linearVelocity = Vector2.left * speed; //get the component to the ri
@@ -98,7 +101,7 @@ public class Movement : MonoBehaviour
         //{
         //    GetComponent<Rigidbody2D>().Gravity Scale *= -1;
         //}
-      
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
