@@ -35,7 +35,7 @@ MonoBehaviour:
   m_LightBlendStyles:
   - name: Multiply
     maskTextureChannel: 0
-    blendMode: 2
+    blendMode: 1
   - name: Additive
     maskTextureChannel: 0
     blendMode: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 0
+        m_Bits: 4294967295
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
