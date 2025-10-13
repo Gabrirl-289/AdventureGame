@@ -137,6 +137,7 @@ public class Movement : MonoBehaviour
         {
             Moving = false;
             Animation.SetBool("Moving", Moving);
+          
         }
 
 
@@ -156,12 +157,14 @@ public class Movement : MonoBehaviour
             print("Crouch");
             isCrouching = true;
             speed = 5;
+            Animation.speed = 0.5f;
         }
         else
         {
             print("Not Crouched");
             isCrouching = false;
             speed = 10;
+            Animation.speed = 1f;
         }
     }
 
@@ -178,12 +181,14 @@ public class Movement : MonoBehaviour
             print("Sprinting");
             isSprinting = true;
             speed = 15;
+            Animation.speed = 1.5f;
         }
         else
         {
             print("Not Sprinting");
             isSprinting = false;
             speed = 10;
+            Animation.speed = 1f;
         }
 
 
