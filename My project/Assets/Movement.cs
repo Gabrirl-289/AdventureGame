@@ -32,6 +32,8 @@ public class Movement : MonoBehaviour
     public Vector2 _movement;
     public Vector2 direction;
 
+  public   Animator Animation;
+    private bool Moving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +117,7 @@ public class Movement : MonoBehaviour
         {
             _rb.linearVelocity = Vector3.zero;
             _rb.angularVelocity = 0.0f;
-            //SceneManager.LoadScene("gameover");
+            SceneManager.LoadScene("gameover");
         }
 
     }
@@ -126,8 +128,17 @@ public class Movement : MonoBehaviour
 
         if (ctx.ReadValue<Vector2>() != Vector2.zero)
         {
+            Moving = true;
             direction = ctx.ReadValue<Vector2>();
+            Animation.SetBool("Moving", Moving);
+            
         }
+        if (ctx.ReadValue<Vector2>() == Vector2.zero)
+        {
+            Moving = false;
+            Animation.SetBool("Moving", Moving);
+        }
+
 
     }
 
