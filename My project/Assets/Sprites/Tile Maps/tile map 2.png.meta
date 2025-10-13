@@ -290,7 +290,7 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: 0.683
       bones: []
       spriteID: 8802a6dfc5e0a7c4cbd44cd4366dfe65
       internalID: -1303341093
@@ -479,7 +479,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 264
-        y: 202
+        y: 203
         width: 64
         height: 64
       alignment: 0
