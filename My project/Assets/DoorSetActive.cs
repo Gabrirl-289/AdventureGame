@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DoorSetActive : MonoBehaviour
+public class DoorSetActive : MonoBehaviour, IDoor
 {
     public void OpenDoor() {
         gameObject.SetActive(false);
