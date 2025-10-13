@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 5597704693605893680}
   - component: {fileID: 7894788317411571592}
   - component: {fileID: 4716564959552626639}
+  - component: {fileID: 2490242168654824183}
+  - component: {fileID: 725363175718212852}
   m_Layer: 8
   m_Name: Square
   m_TagString: Player
@@ -311,7 +313,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.48, y: 2.48}
+    oldSize: {x: 4.5925927, y: 4.5925927}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -349,6 +351,7 @@ MonoBehaviour:
   isCrouching: 0
   _movement: {x: 0, y: 0}
   direction: {x: 0, y: 0}
+  Animation: {fileID: 2490242168654824183}
 --- !u!114 &7894788317411571592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +531,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loight: {fileID: 5533937581256852686}
+--- !u!95 &2490242168654824183
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949806552673129472}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b12e47b30ae0d1f41b6d294b6ef69721, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &725363175718212852
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949806552673129472}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: c21e2adccb5d03d4ba68399541f0d7b6, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &5533937581256852686
 GameObject:
   m_ObjectHideFlags: 0
