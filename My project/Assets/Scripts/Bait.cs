@@ -28,16 +28,17 @@ public class Bait : MonoBehaviour
         //ammotext.text = "ammo: " + ammo.ToString();
         //if (ammo >= 1 && Input.GetKeyDown(Throw))
         //{
-            
+
         //    Instantiate(Projectile, player.transform.position, player.transform.rotation);
         //    Debug.Log("Bait Thrown");
         //    ammo--;
         //}
+        ammotext.text = "ammo: " + ammo.ToString();
     }
 
     public void Attack(InputAction.CallbackContext ctx)
     {
-        ammotext.text = "ammo: " + ammo.ToString();
+        
         if (ctx.performed && ammo >= 1)
         {
             Instantiate(Projectile, player.transform.position, player.transform.rotation);

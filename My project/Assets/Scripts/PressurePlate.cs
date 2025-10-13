@@ -19,7 +19,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Weight"))
+        if (other.CompareTag("Player") || other.CompareTag("weight"))
         {
             isPressed = true;
             if (sr && pressedSprite)
@@ -33,7 +33,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Weight"))
+        if (other.CompareTag("Player") || other.CompareTag("weight"))
         {
             isPressed = false;
             if (sr && unpressedSprite)
