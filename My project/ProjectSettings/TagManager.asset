@@ -9,6 +9,7 @@ TagManager:
   - obstacle
   - Mirror
   - weight
+  - Bait
   layers:
   - Default
   - TransparentFX
