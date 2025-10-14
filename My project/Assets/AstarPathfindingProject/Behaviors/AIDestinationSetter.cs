@@ -30,6 +30,7 @@ namespace Pathfinding {
 		public Transform path2;
 		public bool chasePlayer = false;
         public float distanceFromBait;
+		public bool isBait = false;
 
         IAstarAI ai;
 
@@ -87,11 +88,18 @@ namespace Pathfinding {
 				currentPath = path1;
             }
             if (target != null && ai != null) ai.destination = target.position;
-		
-                if (CompareTag("Bait"))
-			{
 
-			}
-		}
+            GameObject playerObject = GameObject.FindWithTag("Bait");
+            if (playerObject != null)
+            {
+                target = playerObject.transform;
+                isBait = true;
+            }
+            else
+            {
+                isBait = false;
+            }
+        }
 	}
 }
+
