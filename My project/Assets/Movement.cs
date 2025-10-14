@@ -40,7 +40,7 @@ public class Movement : MonoBehaviour
     {
       Cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
-        gainammo.text = "+1 Bait!";
+     //   gainammo.text = "+1 Bait!";
 
     }
     //lit allows light change
