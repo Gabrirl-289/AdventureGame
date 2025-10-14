@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class error : MonoBehaviour
+public class errorTest : MonoBehaviour
 {
     [Header("Vision Settings")]
     public float viewRadius = 5f;               // How far the enemy can see
     [Range(0, 360)]
     public float viewAngle = 90f;               // The width of the vision cone in degrees
-    public LayerMask playerMask;                // Layer of the player
-    public LayerMask obstacleMask;              // Layer of walls or obstacles
+    public float visionThickness = 0.3f;        // How "wide" the enemy’s vision ray is
+    public LayerMask playerMask;                // Player layer
+    public LayerMask obstacleMask;              // Walls or obstacles
 
     [Header("Detection")]
     public bool playerInSight;                  // True if player is visible
@@ -15,7 +16,7 @@ public class error : MonoBehaviour
 
     void Start()
     {
-        // Optional: Automatically find the player by tag
+        // Automatically find player if tagged "Player"
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         if (p != null)
             player = p.transform;
@@ -43,14 +44,15 @@ public class error : MonoBehaviour
             float angleToPlayer = Vector2.Angle(transform.right, directionToPlayer);
             if (angleToPlayer < viewAngle / 2)
             {
-                // Check for walls between enemy and player
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleMask | playerMask);
+                // Cast a thicker "vision" ray (like a short cone)
+                RaycastHit2D hit = Physics2D.CircleCast(transform.position, visionThickness, directionToPlayer, distanceToPlayer, obstacleMask | playerMask);
                 if (hit.collider != null)
                 {
+                    // If hit player before wall
                     if (((1 << hit.collider.gameObject.layer) & playerMask) != 0)
                     {
                         playerInSight = true;
-                        Debug.DrawLine(transform.position, player.position, Color.green); // Visible
+                        Debug.DrawLine(transform.position, player.position, Color.green); // See player
                     }
                     else
                     {
@@ -61,7 +63,6 @@ public class error : MonoBehaviour
         }
     }
 
-    // Draw vision cone in the editor for debugging
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
