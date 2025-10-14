@@ -9,6 +9,6 @@ public class MainTitle : MonoBehaviour
     }
     public void startgame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Master");
     }
 }
