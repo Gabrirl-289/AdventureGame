@@ -28,7 +28,8 @@ namespace Pathfinding {
 		public int path2dis;
 		private float path2distance ;
 		public Transform path2;
-	//	public float distanceFromBait;
+		public bool chasePlayer = false;
+        public float distanceFromBait;
 
         IAstarAI ai;
 
@@ -52,17 +53,24 @@ namespace Pathfinding {
 
 			
 				playerdistance = Vector2.Distance(player.position, transform.position);
-			
+				
 
-			if (playerdistance < distance)
+			if (playerdistance < distance && chasePlayer == true)
 			{
-				//target = player;
+				target = player;
 			}
-			else if (playerdistance > distance)
+
+			else if (playerdistance < distance || chasePlayer == false)
 			{
 				target = currentPath;
+			}
+
+			if (playerdistance > distance)
+			{
+				chasePlayer = false;
             }
-            
+
+
 			path1distance = Vector2.Distance(path1.position, transform.position);
            
 			if (path1distance < path1dis)
