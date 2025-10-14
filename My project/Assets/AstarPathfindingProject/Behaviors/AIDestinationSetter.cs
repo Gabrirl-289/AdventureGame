@@ -28,8 +28,9 @@ namespace Pathfinding {
 		public int path2dis;
 		private float path2distance ;
 		public Transform path2;
-		
-		IAstarAI ai;
+	//	public float distanceFromBait;
+
+        IAstarAI ai;
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -55,7 +56,7 @@ namespace Pathfinding {
 
 			if (playerdistance < distance)
 			{
-				target = player;
+				//target = player;
 			}
 			else if (playerdistance > distance)
 			{
@@ -79,7 +80,10 @@ namespace Pathfinding {
             }
             if (target != null && ai != null) ai.destination = target.position;
 		
-                
+                if (CompareTag("Bait"))
+			{
+
+			}
 		}
 	}
 }
