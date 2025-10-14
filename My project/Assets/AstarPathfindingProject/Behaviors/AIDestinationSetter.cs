@@ -58,7 +58,7 @@ namespace Pathfinding {
 			{
 				//target = player;
 			}
-			else if (playerdistance > distance)
+			 if (playerdistance > distance)
 			{
 				target = currentPath;
             }
