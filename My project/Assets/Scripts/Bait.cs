@@ -46,7 +46,6 @@ public class Bait : MonoBehaviour
             Instantiate(Projectile, player.transform.position, player.transform.rotation);
             Debug.Log("Bait Thrown");
             ammo--;
-            ai.target = GameObject.FindGameObjectWithTag("Bait").transform;
             
         }
     }
