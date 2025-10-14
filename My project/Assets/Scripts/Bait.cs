@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Bait : MonoBehaviour
     public GameObject player;
     public int ammo = 5;
     public TextMeshProUGUI ammotext;
+    public AIDestinationSetter ai;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,6 +46,8 @@ public class Bait : MonoBehaviour
             Instantiate(Projectile, player.transform.position, player.transform.rotation);
             Debug.Log("Bait Thrown");
             ammo--;
+            ai.target = GameObject.FindGameObjectWithTag("Bait").transform;
+            
         }
     }
     //private IEnumerator enumerator()

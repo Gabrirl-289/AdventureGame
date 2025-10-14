@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 
 public class error : MonoBehaviour
@@ -12,6 +13,9 @@ public class error : MonoBehaviour
     [Header("Detection")]
     public bool playerInSight;                  // True if player is visible
     private Transform player;
+
+    public AIDestinationSetter Ai;
+
 
     void Start()
     {
@@ -51,6 +55,7 @@ public class error : MonoBehaviour
                     {
                         playerInSight = true;
                         Debug.DrawLine(transform.position, player.position, Color.green); // Visible
+                        Ai.target = player; // Set the AI's target to the player
                     }
                     else
                     {
