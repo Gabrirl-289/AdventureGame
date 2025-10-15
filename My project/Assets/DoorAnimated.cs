@@ -2,35 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorAnimated : MonoBehaviour
+public class DoorAnimated : MonoBehaviour, IDoor
 {
     private Animator animator;
     public GameObject doorcolider;
-    private bool closed = false;
+    private bool isOpen = false;
     private void Awake()
     {
        animator = GetComponent<Animator>();
     }
     public void OpenDoor()
     {
+        isOpen = true;
         animator.SetBool("Open", true);
-        closed = true;
     }
 
     public void CloseDoor()
     {
+        isOpen = false;
         animator.SetBool("Open", false);
-        closed = false;
     }
 
     public void Update()
     {
-        if (closed == true)
+        if (isOpen == true)
         {
             doorcolider.SetActive(false);
         }
-        else if (closed == false) { 
+        else if (isOpen == false) { 
         doorcolider.SetActive(true);
         }
+    }
+
+    public void ToggleDoor()
+    {
+        throw new System.NotImplementedException();
     }
 }

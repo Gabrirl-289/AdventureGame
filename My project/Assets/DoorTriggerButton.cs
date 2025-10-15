@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class DoorTriggerButton : MonoBehaviour
 {
-    [SerializeField] private DoorAnimated door;
+    [SerializeField] private GameObject doorGameObjectA;
+
+    private IDoor doorA;
+
+    private void Awake()
+    {
+        doorA = doorGameObjectA.GetComponent<IDoor>();
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            door.OpenDoor();
+            doorA.OpenDoor();
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            door.CloseDoor();
+            doorA.CloseDoor();
         }
     }
 }
