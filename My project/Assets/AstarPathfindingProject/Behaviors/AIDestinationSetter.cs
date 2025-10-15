@@ -61,7 +61,7 @@ namespace Pathfinding {
 				target = player;
 			}
 
-			else if (playerdistance < distance || chasePlayer == false)
+			else if (playerdistance < distance || chasePlayer == false && isBait == true)
 			{
 				target = currentPath;
 			}
