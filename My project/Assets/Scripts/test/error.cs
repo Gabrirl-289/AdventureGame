@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 
 public class error : MonoBehaviour
@@ -12,6 +13,9 @@ public class error : MonoBehaviour
     [Header("Detection")]
     public bool playerInSight;                  // True if player is visible
     private Transform player;
+
+    public AIDestinationSetter Ai;
+
 
     void Start()
     {
@@ -40,7 +44,7 @@ public class error : MonoBehaviour
         if (distanceToPlayer < viewRadius)
         {
             // Check if player is within view angle
-            float angleToPlayer = Vector2.Angle(transform.right, directionToPlayer);
+            float angleToPlayer = Vector2.Angle(transform.up, directionToPlayer);
             if (angleToPlayer < viewAngle / 2)
             {
                 // Check for walls between enemy and player
@@ -50,7 +54,9 @@ public class error : MonoBehaviour
                     if (((1 << hit.collider.gameObject.layer) & playerMask) != 0)
                     {
                         playerInSight = true;
+                        Ai.chasePlayer = true;
                         Debug.DrawLine(transform.position, player.position, Color.green); // Visible
+                        Ai.target = player; // Set the AI's target to the player
                     }
                     else
                     {
@@ -67,8 +73,8 @@ public class error : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, viewRadius);
 
-        Vector3 rightDir = Quaternion.Euler(0, 0, viewAngle / 2) * transform.right;
-        Vector3 leftDir = Quaternion.Euler(0, 0, -viewAngle / 2) * transform.right;
+        Vector3 rightDir = Quaternion.Euler(0, 0, viewAngle / 2) * transform.up;
+        Vector3 leftDir = Quaternion.Euler(0, 0, -viewAngle / 2) * transform.up;
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(transform.position, transform.position + rightDir * viewRadius);

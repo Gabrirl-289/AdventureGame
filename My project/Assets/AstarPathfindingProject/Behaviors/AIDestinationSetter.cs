@@ -15,9 +15,9 @@ namespace Pathfinding {
 	[HelpURL("http://arongranberg.com/astar/docs/class_pathfinding_1_1_a_i_destination_setter.php")]
 	public class AIDestinationSetter : VersionedMonoBehaviour {
 		/// <summary>The object that the AI should move to</summary>
+
 		
-		
-		public float playerdistance;
+        public float playerdistance;
 		public int distance;
         public Transform target;
 		public Transform player;
@@ -28,7 +28,11 @@ namespace Pathfinding {
 		public int path2dis;
 		private float path2distance ;
 		public Transform path2;
-		IAstarAI ai;
+		public bool chasePlayer = false;
+        public float distanceFromBait;
+		public bool isBait = false;
+
+        IAstarAI ai;
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -43,41 +47,31 @@ namespace Pathfinding {
 			if (ai != null) ai.onSearchPath -= Update;
 		}
 
-        private bool hasLineofSight = false;
 
-        private void FixedUpdate()
-        {
-			RaycastHit2D ray = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
-			if (ray.collider != null)
-			{
-				hasLineofSight = ray.collider.CompareTag("Player");
-				if(hasLineofSight)
-				{ 
-					Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
-                }
-				else
-				{
-                    Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
-                }
-            }
-        }
 
         /// <summary>Updates the AI's destination every frame</summary>
         void Update() {
 
 			
 				playerdistance = Vector2.Distance(player.position, transform.position);
-			
+				
 
-			if (hasLineofSight && playerdistance < distance)
+			if (playerdistance < distance && chasePlayer == true)
 			{
 				target = player;
 			}
-			else if (playerdistance > distance)
+
+			else if (playerdistance < distance || chasePlayer == false)
 			{
 				target = currentPath;
+			}
+
+			if (playerdistance > distance)
+			{
+				chasePlayer = false;
             }
-            
+
+
 			path1distance = Vector2.Distance(path1.position, transform.position);
            
 			if (path1distance < path1dis)
@@ -94,8 +88,18 @@ namespace Pathfinding {
 				currentPath = path1;
             }
             if (target != null && ai != null) ai.destination = target.position;
-		
-                
-		}
+
+            GameObject playerObject = GameObject.FindWithTag("Bait");
+            if (playerObject != null)
+            {
+                target = playerObject.transform;
+                isBait = true;
+            }
+            else
+            {
+                isBait = false;
+            }
+        }
 	}
 }
+

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainTitle : MonoBehaviour
 {
+  
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void exit()
     {
@@ -9,6 +10,6 @@ public class MainTitle : MonoBehaviour
     }
     public void startgame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Master");
     }
 }

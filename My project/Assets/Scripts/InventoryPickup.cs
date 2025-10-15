@@ -6,8 +6,10 @@ public class InventoryPickup : MonoBehaviour
     private Inventory inventory;
     public GameObject itemButton;
 
+    public AudioSource audioSource;
     private void Start()
     {
+     //   audioSource = GetComponent<AudioSource>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
@@ -25,6 +27,7 @@ public class InventoryPickup : MonoBehaviour
                         inventory.isFull[i] = true;
                         Instantiate(itemButton, inventory.slots[i].transform, false);
                         Destroy(gameObject);
+                        audioSource.Play();
                         break;
                     }
                 }
