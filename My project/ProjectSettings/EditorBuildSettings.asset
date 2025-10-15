@@ -15,7 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/GameOver.unity
     guid: be47c015a95cd384bae575c5fc725718
+=======
+    path: Assets/Scenes/Win.unity
+    guid: b515b8a9ffe63054894dccb047751c8a
+>>>>>>> ac60a375510c2711ba8cb5a557e0b417242269c3
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
