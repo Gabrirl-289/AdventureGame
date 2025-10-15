@@ -23,11 +23,6 @@ public class DoorAnimated : MonoBehaviour, IDoor
         animator.SetBool("Open", false);
     }
 
-    public void PlayOpenFailAnim()
-    {
-       doorAnimated.SetTrigger("OpenFail");
-    }
-
     public void Update()
     {
         if (isOpen == true)
