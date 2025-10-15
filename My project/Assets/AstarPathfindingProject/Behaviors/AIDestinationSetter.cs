@@ -56,15 +56,17 @@ namespace Pathfinding {
 				playerdistance = Vector2.Distance(player.position, transform.position);
 				
 
-			if (playerdistance < distance && chasePlayer == true)
+			if (playerdistance < distance && chasePlayer == true && isBait == false)
 			{
 				target = player;
+				ai.maxSpeed = 7;
 			}
 
-			else if (playerdistance < distance || chasePlayer == false && isBait == true)
+			else if (isBait == false && playerdistance < distance || chasePlayer == false && isBait == false)
 			{
 				target = currentPath;
-			}
+				ai.maxSpeed = 3;
+            }
 
 			if (playerdistance > distance)
 			{
