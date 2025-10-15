@@ -115,9 +115,10 @@ public class Movement : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
+
             _rb.linearVelocity = Vector3.zero;
             _rb.angularVelocity = 0.0f;
-            SceneManager.LoadScene("gameover");
+            SceneManager.LoadScene("GameOver");
         }
 
     }
@@ -205,6 +206,7 @@ public class Movement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angledDeg);
         Debug.DrawLine(transform.position, MousePos, Color.red);
     }
+    
 }
 
 
