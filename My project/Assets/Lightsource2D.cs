@@ -9,6 +9,7 @@ public class Lightsource2D : MonoBehaviour
 
     private LineRenderer lineRenderer;
     public LayerMask reflectLayerMask;
+    public GameObject colliderBox;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class Lightsource2D : MonoBehaviour
                 {
                     Debug.Log("Puzzle Complete! Light reached the crystal.");
                     points.Add(hit.point);
+                    colliderBox.SetActive(false);
                     break;
                 }
                 else // Hit wall or obstacle
